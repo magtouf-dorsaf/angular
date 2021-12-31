@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { GestionService } from '../gestion.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { GestionService } from '../gestion.service';
 })
 export class ListComponent implements OnInit {
 liste:any=[]
-  constructor(private gest:GestionService) { 
+le:any ={ "id":0,"nom":"prenom"}
+  constructor(private gest:GestionService,private route:Router) { 
     this.getLivres();
-    this.delete();
+    
   }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ liste:any=[]
   delete(){
     this.gest.deletLivre(this.liste.id).subscribe(
       {
-        next : (data:any) => { this.route.navigate(['id']) ;},
+        next : (data:any) => { this.route.navigate(['liste']) ;},
         error : (err:any) => { },
         complete :()=> { }
       }
